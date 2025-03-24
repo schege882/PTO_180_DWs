@@ -10,7 +10,8 @@ By Stephen Chege
 # Fully relaxed
 #energy_supercell = -173374.208988   # Ising
 #energy_supercell = -173374.219176   # Ising + Neel
-#energy_supercell = -173374.225949   # Ising + Neel + Bloch
+#energy_supercell = -173374.225949   # Ising + Neel + Bloch ( Pb displacement = 0.04
+                                     # in fractional coordinates )
 
 # Get the lattice parameter b in Ang
 #lattice_b = 3.889483                # Ising
@@ -44,7 +45,8 @@ By Stephen Chege
 # a = b = 3.912274 Ang, fixed cubic DyScO3
 #energy_supercell = -173374.152920   # Ising
 #energy_supercell = -173374.162818   # Ising + Neel
-#energy_supercell = -173374.182787   # Ising + Neel + Bloch
+#energy_supercell = -173374.182787   # Ising + Neel + Bloch ( Pb displacement = 0.09
+                                     # in fractional coordinates )
 
 # Get the lattice parameter b in Ang
 #lattice_b = 3.912274                   # Ising
@@ -61,7 +63,8 @@ By Stephen Chege
 # a = 3.912274 Ang, b = 3.915790 fixed orthorrhombic DyScO3
 #energy_supercell = -173374.142024   # Ising
 #energy_supercell = -173374.153145   # Ising + Neel
-#energy_supercell = -173374.174325   # Ising + Neel + Bloch
+#energy_supercell = -173374.174325   # Ising + Neel + Bloch ( Pb displacement = 0.04
+                                     # in fractional coordinates )
 
 # Get the lattice parameter b in Ang
 #lattice_b = 3.915790                   # Ising
