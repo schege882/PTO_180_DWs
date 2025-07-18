@@ -5,6 +5,10 @@ supercell.
 8th January 2024 at 14:11 
 By Stephen Chege
 """
+# Bulk phase lattice constants in Ang
+#lattice_b = 3.871
+#lattice_c = 4.220
+
 # Getting the energy of the supercell in eV
 # ----------------------
 # Fully relaxed
@@ -13,12 +17,12 @@ energy_supercell = -173374.208988   # Ising
 #energy_supercell = -173374.225949   # Ising + Neel + Bloch
 
 # Get the lattice parameter b in Ang
-lattice_b = 3.889483                # Ising
+#lattice_b = 3.889483                # Ising
 #lattice_b = 3.888776                # Ising + Neel
 #lattice_b = 3.892561                # Ising + Neel + Bloch
 
 # Get the lattice parameter c in Ang
-lattice_c = 4.116203               # Ising
+#lattice_c = 4.116203               # Ising
 #lattice_c = 4.116656               # Ising + Neel
 #lattice_c = 4.114941               # Ising + Neel + Bloch
 # ----------------------

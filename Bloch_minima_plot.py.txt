@@ -1,0 +1,85 @@
+#################################################
+# A code for plotting layer by layer P_y        #
+# polarization of PbTiO3, 20 x 1 x 1 supercell. #
+# By Stephen Chege                              #
+# Date 22nd April 2025, 15:41                   #
+#################################################
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+## -------------------------------------------- LOAD DATA ------------------------------------- ##
+
+# Load the data, skipping the header
+smallBloch_data = np.loadtxt("Small-Bloch/PbTiO3.XV.P.dat", comments="#") # Small-Bloch
+LargeBloch_data = np.loadtxt("Large-Bloch/PbTiO3.XV.P.dat", comments="#") # Large-Bloch
+ExtraLargeBloch_data = np.loadtxt("Extra-large-Bloch/PbTiO3.XV.P.dat", comments="#") # Extra-large-Bloch
+ExtraLargeBlochTwo_data = np.loadtxt("Extra-large-Bloch-2/PbTiO3.XV.P.dat", comments="#") # Extra-large-Bloch-2
+
+## ------------------------------------------ EXTRACT COLUMNS ----------------------------------- ##
+# Extract columns polarization and position data
+# %%%%%% Small Bloch %%%%%%%%%
+smallBloch_X = smallBloch_data[:, 0] #Length of supercell along x-axis in Angstroms
+smallBlochPy = smallBloch_data[:, 2] # Ising + Neel + Bloch
+
+# %%%%%% Large Bloch %%%%%%%%%
+LargeBloch_X = LargeBloch_data[:, 0] #Length of supercell along x-axis in Angstroms
+LargeBlochPy = LargeBloch_data[:, 2] # Ising + Neel + Bloch
+
+# %%%%%% ExtraLarge Bloch %%%%%%%%%
+ExtraLargeBloch_X = ExtraLargeBloch_data[:, 0] #Length of supercell along x-axis in Angstroms
+ExtraLargeBlochPy = ExtraLargeBloch_data[:, 2] # Ising + Neel + Bloch
+
+# %%%%%% ExtraLarge Bloch 2 %%%%%%%%%
+ExtraLargeBlochTwo_X = ExtraLargeBlochTwo_data[:, 0] #Length of supercell along x-axis in Angstroms
+ExtraLargeBlochTwoPy = ExtraLargeBlochTwo_data[:, 2] # Ising + Neel + Bloch
+
+# Create alternating labels for PbO and TiO2 layers (SIESTA)
+X_label = []
+
+for position in range(len(smallBloch_X)):
+    if position % 2 == 0:
+        X_label.append("PbO")
+    else:
+        X_label.append("TiO$_2$")
+
+    
+## -------------------------------------------- PLOT DATA ------------------------------------- ##
+# Plotting
+plt.rcParams["font.family"] = "Times New Roman" # Apply Times New Roman font
+
+# # Create a figure with specific size
+fig, ax = plt.subplots(1, 1, figsize=(8, 6), constrained_layout=True) # row, column, image size
+
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#       SIESTA PLOT          %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# ----- SIESTA PLOT --------#
+ax.plot(smallBloch_X, smallBlochPy, '-k') # Small-Bloch
+ax.plot(LargeBloch_X, LargeBlochPy, '-c') # Large-Bloch
+ax.plot(ExtraLargeBloch_X, ExtraLargeBlochPy, '-m') # Extra-large-Bloch
+ax.plot(ExtraLargeBlochTwo_X, ExtraLargeBlochTwoPy, '-', color='orange') # Extra-large-Bloch-2
+
+
+# Set axis labels
+ax.set_ylabel("P$_y$", fontsize=16)
+
+# Alternating PbO and TiO2 labels on the x-axis
+ax.set_xticks(smallBloch_X) # sets tick labels at the position(in Angstroms) of the PbO
+                           # or TiO2 layer.
+ax.set_xticklabels(X_label, rotation=90) 
+
+# Change label size on ticks
+ax.tick_params(axis='both', labelsize=14)
+
+# set length of axis
+ax.set_xlim([ExtraLargeBlochTwo_X[0]-1, ExtraLargeBlochTwo_X[-1]+1])
+ax.set_ylim([np.min(ExtraLargeBlochTwoPy)-0.05, np.max(ExtraLargeBlochTwoPy)+0.05])
+
+
+# save figure
+plt.savefig("MultipleBlochMinima_fully_relaxed_cell.png", dpi=300)
+
+# Show plot
+plt.show()

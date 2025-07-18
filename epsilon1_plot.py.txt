@@ -1,0 +1,63 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load data
+# y-values of the plot aka epsilon_1
+noPxnoPy_data = np.loadtxt("Relax_cell-noPxnoPy.dat")
+noPy_data = np.loadtxt("RelaxCell-noPy.dat")
+PxPyPz_data = np.loadtxt("Relax_cell.dat")
+
+# x_values of the plot aka PbO plane positions in Ang
+PbO_positions_data = np.loadtxt("PbO_positions.dat")
+
+# Put the values in an array
+noPxnoPy = noPxnoPy_data[:]
+noPy = noPy_data[:]
+PxPyPz = PxPyPz_data[:]
+PbO_positions = PbO_positions_data[:]
+
+# Create labels for PbO planes
+X_label = []
+
+for i in range(len(PbO_positions)):
+        X_label.append("PbO")
+
+
+# Plotting
+plt.rcParams["font.family"] = "Times New Roman" # Apply Times New Roman font
+plt.figure(figsize=(8, 6), constrained_layout=True)
+plt.plot(PbO_positions, noPxnoPy, '-r') #noPxnoPy
+plt.plot(PbO_positions, noPy, '-g') #noPy
+plt.plot(PbO_positions, PxPyPz, '-b') #PxPyPz
+
+# Set axis labels
+plt.ylabel(r'$\mathrm{\epsilon_{1}}$', fontsize=16)
+plt.xticks(PbO_positions, X_label, rotation=90)
+
+# set axis limits
+plt.xlim(PbO_positions[0]-2, PbO_positions[-1]+2)
+
+# Change label size on ticks
+plt.tick_params(axis='both', labelsize=14)
+
+# save figure
+plt.savefig("epsilon1_plot.png", dpi=300)
+
+# Show plot
+plt.show()
+
+
+
+
+
+
+
+
+# print(noPxnoPy)
+
+
+
+
+
+
+
